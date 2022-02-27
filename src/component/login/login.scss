@@ -1,0 +1,36 @@
+.login {
+   width: 16%;;
+    .emailfield {
+      width: 232px;
+  
+      margin-top: 10px;
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: 1px solid #E2E2E2;
+        border-radius: 2px;
+        opacity: 1;
+    }
+    .passwordfield {
+      margin-top: 15px;
+      width: 232px;
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border-radius: 2px;
+      opacity: 1;
+    }
+    .loginbutton {
+      width: 126px;
+      background: #A03037 0% 0% no-repeat padding-box;
+      border-radius: 3px;
+      opacity: 1;
+    }
+   
+    .Buttons {
+      display: flex;
+      width: 236px;
+      height: 37px;
+      padding-left: 6px;
+  
+      .googleButton {
+        margin-left: 25px;
+      }
+    }
+  }
