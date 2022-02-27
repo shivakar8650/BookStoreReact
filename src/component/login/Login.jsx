@@ -26,7 +26,7 @@ function Login() {
     const validate = () => {
         let emailError = values.emailId === '' ? true : false
         let passworderror = values.password === '' ? true : false
-        values((previousvalues) => {
+        setValues((previousvalues) => {
             return { ...previousvalues, emailIdError: emailError, passwordError: passworderror }
         })
         return emailError || passworderror
@@ -56,16 +56,21 @@ function Login() {
         <div className='login'>
             <div className='mail'>
                 <TextField name="emailId" className="emailfield" size="small" type='text' id="outlined-email" label="Email Id" variant="outlined"
-                    onChange={(e) => changeFields(e)} error={values.emailIdError} />
+                    onChange={(e) => changeFields(e)}
+                     error={values.emailIdError}
+                    // helperText={values.emailIdError ? "email required " : " "} 
+                    />
             </div>
             <div>
                 <FormControl className="passwordfield" variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password" style={{marginBottom:'10px'}}>Password</InputLabel>
-                    <OutlinedInput
+                   <OutlinedInput
                         id="outlined-adornment-password"
                         size="small"
                         type={values.showPassword ? 'text' : 'password'}
                         value={values.password}
+                        error={values.passwordError}
+                        // helperText={values.passwordError ? "passwoed required " : " "} 
                         onChange={handleChange('password')}
                         endAdornment={
                             <InputAdornment position="end">

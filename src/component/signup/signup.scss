@@ -1,0 +1,28 @@
+.signup {
+    width: 16%;
+      .emailfield {
+        width: 232px;  
+        margin-top: 10px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 2px;
+        opacity: 1;
+      }
+      .passwordfield {
+        margin-top: 15px;
+        width: 232px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 2px;
+        opacity: 1;
+      }
+      .s-Button{
+         margin: 10px;
+        .signupbutton {
+            width: 100%;
+            text-align: left;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            opacity: 1;
+          }
+      }
+      
+}
