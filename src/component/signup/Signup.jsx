@@ -8,14 +8,14 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import {UserService} from '../../Services/UserServices';
 
 function Signup() {
 
     const [values, setValues] = React.useState({
         fullname:"",
-        emailId: "",
-        password: "",
+        emailId:"",
+        password:"",
         mobile:"",
         emailIdError: false,
         passwordError: false,
@@ -26,6 +26,7 @@ function Signup() {
 
     const changeFields = (e) => {
         setValues(previousvalues => {
+            console.log(e.target.value)
             return { ...previousvalues, [e.target.name]: e.target.value }
         })
     }
@@ -36,10 +37,9 @@ function Signup() {
         let mobilerror = values.mobile === '' ? true : false
         
         setValues((previousvalues) => {
-        return { ...previousvalues, emailIdError: emailError, passwordError: passworderror, fullnameError:fullnamerror, mobileError:mobilerror }
+        return { ...previousvalues, emailIdError: emailError, passwordError: passworderror, fullnameError: fullnamerror, mobileError: mobilerror }
     })
-    return emailError || passworderror || fullnamerror || mobilerror
-
+    return emailError || passworderror || fullnamerror || mobilerror;
     }
     const handleClickShowPassword = () => {
         setValues({
@@ -56,23 +56,34 @@ function Signup() {
     };
     const signup = () => {
         let isValidate = validate();
-        if (!isValidate) {
-            console.log(isValidate);
+        if(!isValidate){
+            let data={
+                    "fullName": values.fullname,
+                    "emailID": values.emailId,
+                    "password": values.password,
+                    "mobile": values.mobile
+            }
+            console.log(data);
+            UserService.signup(data).then(( res)=>{
+                console.log(res.data);   
+                window.location.reload();   
+            }).catch((err)=>{               
+            })
         }
     }
-
-
 
     return (
         <>
             <div className='signup'>
                 <div className='fullname'>
                     <TextField name="fullname" className="emailfield" size="small" type='text' id="outlined-email" label="fullname" variant="outlined"
-                    onChange={(e) => changeFields(e)} error={values.emailIdError} />
+                    onChange={(e) => changeFields(e)} error={values.fullnameError} />
                 </div>
                 <div className='Email'>
-                    <TextField name="emailid" className="emailfield" size="small" type='text' id="outlined-email" label="email id" variant="outlined"
-                    onChange={(e) => changeFields(e)} error={values.emailIdError} />
+                    <TextField name="emailId" className="emailfield" size="small" type='text' id="outlined-email" label=" email Id" variant="outlined"
+                    onChange={(e) => changeFields(e)} 
+                    error={values.emailIdError}
+                     />
                 </div>
                 <div>
                     <FormControl className="passwordfield" variant="outlined">
@@ -103,7 +114,7 @@ function Signup() {
                 </div>
                 <div className='Mo_number'>
                 <TextField name="mobile" className="emailfield" size="small" type='text' id="outlined-email" label="mobile" variant="outlined"
-                onChange={(e) => changeFields(e)} error={values.emailIdError} />
+                onChange={(e) => changeFields(e)} error={values.mobileError} />
                 </div>
                 <div className='s-Button'>
                 <Button className='signupbutton' style={{ backgroundColor: '#A03037' }} onClick={() => signup()}> Signup </Button>

@@ -7,10 +7,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { Navigate } from "react-router-dom";
 import './login.scss';
-
+import {UserService} from '../../Services/UserServices';
+// import { useNavigate } from 'react-router';
 function Login() {
+    // const navigate = useNavigate();
+    // const services =  UserService();
     const [values, setValues] = React.useState({
         emailId: "",
         password: "",
@@ -47,8 +50,20 @@ function Login() {
 
     const login = () => {
         let isValidate = validate();
-        if (!isValidate) {
-            console.log(isValidate);
+        if(!isValidate){
+            let data={
+                "emailID": values.emailId,
+                "password": values.password
+            }
+            console.log(data);
+            UserService.login(data).then(( res)=>{
+                console.log(res.data);
+                console.log(res.data.data.fullName);
+                localStorage.setItem("name" ,res.data.data.fullName )
+                localStorage.setItem("token",res.data.data.token)
+            // <Navigate to="Mainpage" />
+            }).catch((err)=>{      
+            })
         }
     }
 
@@ -72,6 +87,7 @@ function Login() {
                         error={values.passwordError}
                         // helperText={values.passwordError ? "passwoed required " : " "} 
                         onChange={handleChange('password')}
+                        // onChange={(e) => changeFields(e)}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton

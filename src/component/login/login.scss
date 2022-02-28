@@ -1,14 +1,15 @@
 .login {
-  width: 16%;
+  width: 100%;
+  padding-top: 30px;
     .emailfield {
       width: 232px;  
-      margin-top: 10px;
+      margin-top: 20px;
       background: #FFFFFF 0% 0% no-repeat padding-box;
       border-radius: 2px;
       opacity: 1;
     }
     .passwordfield {
-      margin-top: 15px;
+      margin-top: 20px;
       width: 232px;
       background: #FFFFFF 0% 0% no-repeat padding-box;
       border-radius: 2px;
@@ -20,9 +21,11 @@
       border-radius: 3px;
       opacity: 1;
       color: #FFFFFF;
-
+      margin-left: 50px;
     }
-   
+   .mid{
+    margin-left: 100px;
+   }
     .Buttons {
       display: flex;
       width: 236px;
