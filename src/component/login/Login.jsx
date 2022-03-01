@@ -7,19 +7,20 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import './login.scss';
 import {UserService} from '../../Services/UserServices';
-// import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 function Login() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // const services =  UserService();
     const [values, setValues] = React.useState({
         emailId: "",
         password: "",
         emailIdError: false,
         passwordError: false,
-        showPassword: false
+        showPassword: false,
+        redirect:false
     })
     const changeFields = (e) => {
         setValues(previousvalues => {
@@ -59,15 +60,19 @@ function Login() {
             UserService.login(data).then(( res)=>{
                 console.log(res.data);
                 console.log(res.data.data.fullName);
+                setValues({
+                    redirect:true
+                })
                 localStorage.setItem("name" ,res.data.data.fullName )
                 localStorage.setItem("token",res.data.data.token)
-            // <Navigate to="Mainpage" />
+            navigate("/dashbord");
             }).catch((err)=>{      
             })
         }
     }
 
     return (<>
+
         <div className='login'>
             <div className='mail'>
                 <TextField name="emailId" className="emailfield" size="small" type='text' id="outlined-email" label="Email Id" variant="outlined"
@@ -117,6 +122,7 @@ function Login() {
                 </div>
             </div>
         </div>
+     
     </>);
 }
 
