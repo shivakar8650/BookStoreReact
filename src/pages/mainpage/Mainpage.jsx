@@ -30,7 +30,7 @@ export default function Mainpage() {
                  </div>
                  {/* </div> */}
                  <div className='conditionalcomponent'>
-                 {valid ? <Login /> :<Signup />}
+                 {valid ? <Login /> : <Signup />}
                  </div>
             
          </div>
