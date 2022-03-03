@@ -5,5 +5,8 @@ export const BookServices = {
      getAllproducts: (data) => {
          return AxiosService.getService(`${url}/getallbooks`, data)
      },
+    //  getbookbyid: (data)=>{
+    //     return AxiosService.getService(`${url}/byID`, data)
+    //  }
     
  }

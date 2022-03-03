@@ -2,8 +2,9 @@ import React from "react";
 import "./displaybook.scss";
 import bookimage from "../../Assets/book.png";
 import { BookServices } from '../../Services/BookServices';
+import { CartServices } from "../../Services/CartServices";
 
-function Displaybook() {
+function Displaybook(props) {
   const [books, setBooks] = React.useState([]);
   React.useEffect(() => {
     getBooks();
@@ -15,15 +16,52 @@ function Displaybook() {
         console.log(res);
         console.log(res.data.data);
         setBooks(res.data.data);
-        
-       
-        console.log("getting all books");
+  
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(books);
+ 
+  const addCart = (book) => {
+    let data = {
+     "userID": localStorage.getItem("UserId"),
+      "booksModel": {
+      "bookID": book.bookID,
+      "bookName": book.bookName,
+      "authorName": book.authorName,
+      "rating": book.rating,
+      "totalRating": book.totalRating,
+      "discountPrice": book.discountPrice,
+      "originalPrice": book.originalPrice,
+      "description": book.description,
+      "bookImage": book.bookImage
+      },
+      "quantity": 1
+    };
+    console.log(data);
+    CartServices.addtocart(data)
+      .then((result) => {
+       console.log(result);
+       console.log("add to bag");
+       props.getCart()
+       getBooks();
+      })
+      .catch(() => {});
+  };
+  // const wishlist = (book) => {
+  //   let data = {
+  //     _id: book._id,
+  //   };
+  //   wishlistService
+  //     .addwishlist(data)
+  //     .then((result) => {
+  //      console.log(result);
+  //      props.getwishlist()
+  //      getBooks();
+  //     })
+  //     .catch(() => {});
+  // };
 
   return (
     <>
@@ -43,7 +81,7 @@ function Displaybook() {
             <div className="books-display">
               <div className="image-display">
                 <div>
-                  <img className="image" src={bookimage}></img>
+                  <img className="image" src={book.bookImage}></img>
                 </div>
               </div>
               <div className="content">
@@ -55,6 +93,24 @@ function Displaybook() {
                 </div>
                 <div className="bookprice">
                   <span className="">Rs:- {book.originalPrice}</span>
+                </div>
+                <div className="order">
+                  <button
+                    className="bag"
+                    onClick={() => {
+                      addCart(book);
+                    }}
+                  >
+                    ADD TO BAG
+                  </button>
+                  <button
+                    className="wishlist"
+                    // onClick={() => {
+                    //   wishlist(book);
+                    // }}
+                  >
+                    WISHLIST
+                  </button>
                 </div>
               </div>
             </div>

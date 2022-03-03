@@ -6,7 +6,9 @@ import Login from './component/login/Login';
 import Signup from './component/signup/Signup';
 import Dashboard from './pages/dashboard/Dashboard';
 import Mainpage from './pages/mainpage/Mainpage';
+
 import {  BrowserRouter ,Routes, Link , Route} from "react-router-dom";
+import Cart from './pages/cart/Cart';
 function App() {
   return (
     <div className="App">
@@ -14,7 +16,8 @@ function App() {
       <Routes>
           <Route path="/" element={<Mainpage />} />
           <Route path="/dashbord" element={<Dashboard />} />
-   
+           <Route path="/cart" element={<Cart />} />           
+
       </Routes>
       </BrowserRouter>
       {/* <Login /> */}

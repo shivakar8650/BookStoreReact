@@ -4,9 +4,18 @@ import PermIdentityTwoToneIcon from '@mui/icons-material/PermIdentityTwoTone';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import bookimage from '../../Assets/education.png'
 import './header.scss'
+import { useNavigate } from "react-router-dom";
+import Badge from '@mui/material/Badge';
+function Header(props) {
 
-function Header() {
-  return (<> <div className='headerPage'>
+  const navigate = useNavigate();
+  
+  const cart = ()=>{
+    navigate('/cart')
+}
+
+  return (<> 
+  <div className='headerPage'>
   <img className='image' src={bookimage} alt='this is book logo' />
   <p className='imagetitle' >Bookstore</p>
   <div className='searchbar'>
@@ -19,15 +28,14 @@ function Header() {
        </div>
        <div className='person'>shiva</div>
   </div>
-  <div className='details-cart'>
-      <div className=''>
-      <ShoppingCartOutlinedIcon htmlColor="white" />
-      </div>
-      <div className='cart'>
-      Cart
-      </div>
-
-  </div>
+  <div className="details-cart" onClick={()=>cart()}>
+          <div className="">
+          <Badge badgeContent={props.quantity} color="primary">
+            <ShoppingCartOutlinedIcon htmlColor="white" />
+            </Badge>
+          </div>
+          <div className="cart">Cart</div>
+        </div>
 </div>
 </>
     

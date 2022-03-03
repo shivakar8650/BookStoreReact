@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Displaybook from '../../component/displaybook/Displaybook'
 import Footer from '../../component/footer/Footer'
 import Header from '../../component/header/Header'
-
-
-
+import { CartServices } from '../../Services/CartServices'
 
 function Dashboard() {
-  return (
+// const [cart ,setCart] = React.useState([])
+  
+// const getCart = () => {
+//   CartServices.getcart().then((result) => {
+//   console.log(result);
+//   setCart(result.data.data)
+//   })
+// }
+  return ( 
      <div>
      <div className='dashboard' style={{width:"100%" ,height:"100%"}}>
-       <Header/>
-       <Displaybook/>
+       <Header />
+       {/* <Displaybook cart={cart}  getCart={getCart}/> */}
+       <Displaybook />
        <Footer/>
      </div>
      </div>

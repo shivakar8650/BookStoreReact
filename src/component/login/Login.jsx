@@ -63,7 +63,8 @@ function Login() {
                 setValues({
                     redirect:true
                 })
-                localStorage.setItem("name" ,res.data.data.fullName )
+                localStorage.setItem("name" ,res.data.data.fullName)
+                localStorage.setItem("UserId" ,res.data.data.userID)
                 localStorage.setItem("token",res.data.data.token)
             navigate("/dashbord");
             }).catch((err)=>{      
