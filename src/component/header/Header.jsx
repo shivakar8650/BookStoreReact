@@ -13,10 +13,13 @@ function Header(props) {
   const cart = ()=>{
     navigate('/cart')
 }
+const home = ()=>{
+  navigate('/dashbord')
+}
 
   return (<> 
   <div className='headerPage'>
-  <img className='image' src={bookimage} alt='this is book logo' />
+  <img className='image' src={bookimage} alt='this is book logo'  onClick={()=>home()} />
   <p className='imagetitle' >Bookstore</p>
   <div className='searchbar'>
       <SearchOutlinedIcon htmlColor="grey"/>
